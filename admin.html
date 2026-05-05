@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<h1>⚙️ Admin Dashboard</h1>
+
+<!-- ================= STATS ================= -->
+<section id="statsSection">
+    <h2>📊 Platform Stats</h2>
+    <div class="stats-container">
+        <div class="card">
+            <h3>Total Users</h3>
+            <p id="totalUsers">Loading...</p>
+        </div>
+
+        <div class="card">
+            <h3>Total Uploads</h3>
+            <p id="totalUploads">Loading...</p>
+        </div>
+
+        <div class="card">
+            <h3>Active Users Today</h3>
+            <p id="activeUsers">Loading...</p>
+        </div>
+    </div>
+</section>
+
+<hr>
+
+<!-- ================= USER MANAGEMENT ================= -->
+<section id="userSection">
+    <h2>👤 User Management</h2>
+
+    <!-- 🔥 WRAPPER -->
+    <div id="userContainer">
+        <table>
+            <thead>
+                <tr>
+                    <th>Email</th>
+                    <th>Created At</th>
+                    <th>Storage Used</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="userTable"></tbody>
+        </table>
+    </div>
+
+    <!-- 🔥 BUTTON -->
+    <button id="toggleUsersBtn" class="view-btn">View All Users</button>
+</section>
+
+<hr>
+
+<!-- ================= FILE MANAGEMENT ================= -->
+<section id="fileSection">
+    <h2>📁 All Uploaded Files</h2>
+
+    <div id="fileContainer">
+        <table>
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Owner</th>
+                    <th>Size</th>
+                    <th>Upload Date</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="fileTable"></tbody>
+        </table>
+    </div>
+
+    <button id="toggleFilesBtn" class="view-btn">View All Files</button>
+</section>
+
+<hr>
+
+<!-- ================= GUEST FILES ================= -->
+<section id="guestSection">
+    <h2>👻 Guest Uploads</h2>
+
+    <div id="guestContainer">
+        <table>
+            <thead>
+                <tr>
+                    <th>File Name</th>
+                    <th>Uploaded At</th>
+                    <th>Expires At</th>
+                    <th>Size</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody id="guestTable"></tbody>
+        </table>
+    </div>
+
+    <button id="toggleGuestBtn" class="view-btn">View All Guest Files</button>
+</section>
+
+<hr>
+
+<!-- ================= ACTIVITY LOGS ================= -->
+<section id="logSection">
+    <h2>🧾 Activity Logs</h2>
+
+    <ul id="activityLogs"></ul>
+
+    <button id="toggleLogsBtn" class="view-btn">View All Logs</button>
+</section>
+
+<hr>
+
+<!-- ================= SCRIPTS ================= -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="js/supabase.js"></script>
+<script src="js/admin.js"></script>
+
+</body>
+</html>

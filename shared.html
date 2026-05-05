@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Shared Files - Own Cloud</title>
+    <link rel="stylesheet" href="css/shared.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        nav {
+            margin-bottom: 20px;
+        }
+
+        .file-container {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .file-card {
+            border: 1px solid #ccc;
+            padding: 12px;
+            border-radius: 8px;
+            background: #f9f9f9;
+        }
+
+        .file-name {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        .btn-group {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .btn-group button {
+            padding: 6px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #333;
+            color: white;
+        }
+
+        .btn-group button:hover {
+            background-color: #555;
+        }
+
+        .preview {
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<h2>Shared Files 🌐</h2>
+
+<nav>
+    <a href="dashboard.html">Dashboard</a> |
+    <a href="upload.html">Upload</a> |
+    <a href="#" onclick="logout()">Logout</a>
+</nav>
+
+<!-- ✅ File List -->
+<div id="sharedList" class="file-container">
+    <p>Loading files...</p>
+
+    <!-- 🔽 SAMPLE STRUCTURE (JS WILL GENERATE THIS) -->
+    <!--
+    <div class="file-card">
+        <span class="file-name">example.jpg 🌐</span>
+
+        <div class="btn-group">
+            <button>👁</button>
+            <button>⬇</button>
+            <button>🔗</button>
+            <button>🗑</button>
+        </div>
+
+        <div class="preview"></div>
+    </div>
+    -->
+</div>
+
+<!-- Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="js/supabase.js"></script>
+
+<!-- Your logic -->
+<script src="js/shared.js"></script>
+
+<!-- Logout -->
+<script>
+async function logout() {
+    await db.auth.signOut();
+    window.location.href = "index.html";
+}
+</script>
+
+</body>
+</html>

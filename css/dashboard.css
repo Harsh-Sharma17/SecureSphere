@@ -1,0 +1,261 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+  --bg:        #08090d;
+  --surface:   #0f111a;
+  --surface2:  #13151f;
+  --surface3:  #171924;
+  --border:    rgba(255,255,255,0.07);
+  --accent:    #4af0c4;
+  --accent2:   #7c6bff;
+  --text:      #e8eaf0;
+  --muted:     #6b7280;
+  --glow-t:    rgba(74,240,196,0.15);
+  --glow-p:    rgba(124,107,255,0.15);
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Body ──────────────────────────────────────────────────── */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  padding: 2.5rem 2rem 4rem;
+  overflow-x: hidden;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Orbs ──────────────────────────────────────────────────── */
+body::before, body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 20s ease-in-out infinite alternate;
+}
+body::before {
+  width: 580px; height: 580px;
+  top: -220px; left: -140px;
+  background: radial-gradient(circle, rgba(74,240,196,0.08) 0%, transparent 70%);
+}
+body::after {
+  width: 460px; height: 460px;
+  bottom: -160px; right: -100px;
+  background: radial-gradient(circle, rgba(124,107,255,0.10) 0%, transparent 70%);
+  animation-delay: -10s;
+}
+@keyframes drift {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(35px,28px) scale(1.07); }
+}
+
+/* ── Page wrapper ──────────────────────────────────────────── */
+.page {
+  position: relative;
+  z-index: 1;
+  max-width: 860px;
+  margin: 0 auto;
+}
+
+/* ── Header row ────────────────────────────────────────────── */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border);
+  animation: fadeUp 0.7s ease both;
+}
+
+h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #fff 30%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ── Nav ───────────────────────────────────────────────────── */
+nav {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+  animation: fadeUp 0.7s 0.1s ease both;
+}
+
+/* hide the pipe separators */
+nav > text,
+body > nav {
+  color: transparent;
+  font-size: 0;
+}
+
+nav a {
+  text-decoration: none;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.03em;
+  padding: 0.5rem 1.1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.18s;
+}
+
+nav a:hover {
+  color: var(--accent);
+  border-color: rgba(74,240,196,0.4);
+  background: rgba(74,240,196,0.05);
+  box-shadow: 0 0 14px var(--glow-t);
+  transform: translateY(-2px);
+}
+
+/* Logout — subtle danger tint */
+nav a[onclick] {
+  color: var(--muted);
+}
+nav a[onclick]:hover {
+  color: #ff6b6b;
+  border-color: rgba(255,107,107,0.4);
+  background: rgba(255,107,107,0.05);
+  box-shadow: 0 0 14px rgba(255,107,107,0.12);
+}
+
+/* ── Section heading ───────────────────────────────────────── */
+h3 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.2rem;
+  animation: fadeUp 0.7s 0.2s ease both;
+}
+
+/* ── File list ─────────────────────────────────────────────── */
+ul {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  animation: fadeUp 0.7s 0.3s ease both;
+}
+
+ul li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.4rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  font-size: 0.92rem;
+  color: var(--text);
+  transition: border-color 0.22s, background 0.22s, box-shadow 0.22s, transform 0.18s;
+  cursor: default;
+}
+
+ul li:hover {
+  border-color: rgba(124,107,255,0.35);
+  background: rgba(124,107,255,0.05);
+  box-shadow: 0 0 18px var(--glow-p);
+  transform: translateX(4px);
+}
+
+/* Loading placeholder state */
+ul li:only-child {
+  color: var(--muted);
+  font-style: italic;
+  justify-content: center;
+  border-style: dashed;
+}
+
+/* File icon pseudo ── prepended to every li that isn't loading */
+ul li:not(:only-child)::before {
+  content: '📄';
+  font-style: normal;
+  flex-shrink: 0;
+}
+
+/* ── File action links (injected by JS) ────────────────────── */
+ul li a {
+  text-decoration: none;
+  font-size: 0.78rem;
+  font-weight: 500;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  color: var(--muted);
+  background: var(--surface2);
+  white-space: nowrap;
+  transition: color 0.2s, border-color 0.2s, background 0.2s;
+}
+ul li a:hover {
+  color: var(--accent);
+  border-color: rgba(74,240,196,0.4);
+  background: rgba(74,240,196,0.06);
+}
+
+/* Delete / danger links */
+ul li a.delete,
+ul li a[onclick*="delete"],
+ul li a[onclick*="remove"] {
+  color: var(--muted);
+}
+ul li a.delete:hover,
+ul li a[onclick*="delete"]:hover,
+ul li a[onclick*="remove"]:hover {
+  color: #ff6b6b;
+  border-color: rgba(255,107,107,0.35);
+  background: rgba(255,107,107,0.06);
+}
+
+/* ── Upload CTA card (optional empty state) ────────────────── */
+.empty-state {
+  text-align: center;
+  padding: 3rem 2rem;
+  border: 1px dashed var(--border);
+  border-radius: 16px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 0.5rem;
+}
+.empty-state a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+}
+.empty-state a:hover { text-decoration: underline; }
+
+/* ── Animation ─────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 560px) {
+  body { padding: 1.5rem 1rem 3rem; }
+  .header { flex-direction: column; align-items: flex-start; }
+  ul li { flex-direction: column; align-items: flex-start; }
+}

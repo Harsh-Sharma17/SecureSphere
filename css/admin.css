@@ -1,0 +1,390 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400&display=swap');
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+  --bg:         #08090d;
+  --surface:    #0f111a;
+  --surface2:   #13151f;
+  --surface3:   #171924;
+  --border:     rgba(255,255,255,0.07);
+  --border2:    rgba(255,255,255,0.04);
+  --accent:     #4af0c4;
+  --accent2:    #7c6bff;
+  --text:       #e8eaf0;
+  --muted:      #6b7280;
+  --danger:     #ff6b6b;
+  --warn:       #f5a623;
+  --glow-t:     rgba(74,240,196,0.13);
+  --glow-p:     rgba(124,107,255,0.13);
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Body ──────────────────────────────────────────────────── */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  padding: 0 0 5rem;
+  overflow-x: hidden;
+
+  background-image:
+    linear-gradient(rgba(255,255,255,0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.018) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Orbs ──────────────────────────────────────────────────── */
+body::before, body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 22s ease-in-out infinite alternate;
+}
+body::before {
+  width: 700px; height: 700px;
+  top: -250px; left: -200px;
+  background: radial-gradient(circle, rgba(124,107,255,0.07) 0%, transparent 70%);
+}
+body::after {
+  width: 560px; height: 560px;
+  bottom: -200px; right: -150px;
+  background: radial-gradient(circle, rgba(74,240,196,0.07) 0%, transparent 70%);
+  animation-delay: -11s;
+}
+@keyframes drift {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(35px,28px) scale(1.06); }
+}
+
+/* ── Page wrapper ──────────────────────────────────────────── */
+body > *, section, hr {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+/* ── Top heading ───────────────────────────────────────────── */
+h1 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: clamp(1.8rem, 4vw, 2.6rem);
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #fff 25%, var(--accent2) 70%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  padding: 3rem 2rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+  animation: fadeUp 0.7s ease both;
+}
+
+/* ── HR dividers ───────────────────────────────────────────── */
+hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 0 auto 2.5rem;
+  padding: 0;
+}
+
+/* ── Sections ──────────────────────────────────────────────── */
+section {
+  padding-top: 0;
+  padding-bottom: 2.5rem;
+  animation: fadeUp 0.7s ease both;
+}
+
+#statsSection  { animation-delay: 0.05s; }
+#userSection   { animation-delay: 0.10s; }
+#fileSection   { animation-delay: 0.15s; }
+#guestSection  { animation-delay: 0.20s; }
+#logSection    { animation-delay: 0.25s; }
+
+/* ── Section headings ──────────────────────────────────────── */
+section h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.68rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 1.4rem;
+}
+
+/* ── Stats cards ───────────────────────────────────────────── */
+.stats-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
+  margin-bottom: 0;
+}
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1.4rem 1.6rem;
+  transition: border-color 0.22s, background 0.22s, box-shadow 0.22s, transform 0.18s;
+}
+
+.card:hover {
+  border-color: rgba(124,107,255,0.35);
+  background: rgba(124,107,255,0.04);
+  box-shadow: 0 0 20px var(--glow-p);
+  transform: translateY(-3px);
+}
+
+.card h3 {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.6rem;
+}
+
+.card p {
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  color: var(--text);
+  line-height: 1;
+}
+
+.card p:only-child {
+  font-size: 0.9rem;
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  color: var(--muted);
+  font-style: italic;
+  letter-spacing: 0;
+}
+
+/* ── Table containers ──────────────────────────────────────── */
+#userContainer,
+#fileContainer,
+#guestContainer {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 1rem;
+}
+
+/* ── Tables ────────────────────────────────────────────────── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.88rem;
+}
+
+thead {
+  background: var(--surface2);
+  border-bottom: 1px solid var(--border);
+}
+
+thead th {
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  font-weight: 500;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  padding: 0.9rem 1.2rem;
+  text-align: left;
+  white-space: nowrap;
+}
+
+tbody tr {
+  border-bottom: 1px solid var(--border2);
+  transition: background 0.18s;
+}
+
+tbody tr:last-child { border-bottom: none; }
+
+tbody tr:hover {
+  background: rgba(74,240,196,0.03);
+}
+
+tbody td {
+  padding: 0.85rem 1.2rem;
+  color: var(--text);
+  font-weight: 400;
+  vertical-align: middle;
+}
+
+/* email / filename cells */
+tbody td:first-child {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.82rem;
+  color: var(--muted);
+  max-width: 240px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* size / date cells */
+tbody td:nth-child(3),
+tbody td:nth-child(4) {
+  color: var(--muted);
+  font-size: 0.82rem;
+}
+
+/* action cell buttons */
+tbody td:last-child {
+  white-space: nowrap;
+}
+
+tbody td button,
+tbody td a {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  border: 1px solid var(--border);
+  background: var(--surface2);
+  color: var(--muted);
+  transition: color 0.2s, border-color 0.2s, background 0.2s, transform 0.15s;
+}
+
+tbody td button:hover,
+tbody td a:hover {
+  color: var(--accent);
+  border-color: rgba(74,240,196,0.4);
+  background: rgba(74,240,196,0.06);
+  transform: translateY(-1px);
+}
+
+/* delete buttons */
+tbody td button.delete,
+tbody td button[onclick*="delete"],
+tbody td button[onclick*="ban"],
+tbody td a.delete {
+  color: var(--muted);
+}
+
+tbody td button.delete:hover,
+tbody td button[onclick*="delete"]:hover,
+tbody td button[onclick*="ban"]:hover,
+tbody td a.delete:hover {
+  color: var(--danger);
+  border-color: rgba(255,107,107,0.4);
+  background: rgba(255,107,107,0.06);
+}
+
+/* ── View all buttons ──────────────────────────────────────── */
+.view-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.55rem 1.3rem;
+  border-radius: 9999px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--muted);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: color 0.2s, border-color 0.2s, background 0.2s, box-shadow 0.2s, transform 0.18s;
+}
+
+.view-btn:hover {
+  color: var(--accent);
+  border-color: rgba(74,240,196,0.4);
+  background: rgba(74,240,196,0.05);
+  box-shadow: 0 0 14px var(--glow-t);
+  transform: translateY(-2px);
+}
+
+/* ── Activity logs ─────────────────────────────────────────── */
+#activityLogs {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+#activityLogs li {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1.2rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  font-size: 0.85rem;
+  color: var(--text);
+  transition: border-color 0.2s, background 0.2s, transform 0.18s;
+}
+
+#activityLogs li:hover {
+  border-color: rgba(74,240,196,0.25);
+  background: rgba(74,240,196,0.03);
+  transform: translateX(4px);
+}
+
+/* timestamp inside log */
+#activityLogs li time,
+#activityLogs li .time,
+#activityLogs li span {
+  font-family: 'DM Mono', monospace;
+  font-size: 0.75rem;
+  color: var(--muted);
+  flex-shrink: 0;
+}
+
+/* ── Empty / loading states ────────────────────────────────── */
+tbody tr td[colspan],
+#activityLogs li:only-child {
+  text-align: center;
+  color: var(--muted);
+  font-style: italic;
+  padding: 2rem;
+}
+
+/* ── Scrollable table on small screens ─────────────────────── */
+#userContainer,
+#fileContainer,
+#guestContainer {
+  overflow-x: auto;
+}
+
+/* ── Animation ─────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(18px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  body > *, section, hr { padding-left: 1rem; padding-right: 1rem; }
+  h1 { font-size: 1.7rem; padding: 2rem 1rem 1.5rem; }
+  .stats-container { grid-template-columns: 1fr 1fr; }
+  .card p { font-size: 1.6rem; }
+  thead th, tbody td { padding: 0.7rem 0.9rem; }
+}
+
+@media (max-width: 420px) {
+  .stats-container { grid-template-columns: 1fr; }
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Upload File</title>
+    <link rel="stylesheet" href="css/upload.css">
+</head>
+
+<body>
+
+    <!-- Dashboard button -->
+    <a href="dashboard.html" class="btn-dashboard">
+        <svg viewBox="0 0 24 24">
+            <polyline points="15 18 9 12 15 6"></polyline>
+        </svg>
+        Dashboard
+    </a>
+
+    <div class="container">
+        <h2>Upload File</h2>
+
+        <form id="uploadForm">
+            <input type="file" id="fileInput" required>
+
+            <label>Privacy:</label>
+            <label><input type="radio" name="privacy" value="private" checked> Private</label>
+            <label><input type="radio" name="privacy" value="public"> Public</label>
+
+            <input type="password" id="filePassword" placeholder="Set Password (optional)">
+
+            <button type="submit">Upload</button>
+        </form>
+
+        <p id="status"></p>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+    <script src="js/supabase.js"></script>
+    <script src="js/upload.js"></script>
+</body>
+
+</html>

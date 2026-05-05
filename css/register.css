@@ -1,0 +1,244 @@
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=DM+Sans:wght@300;400;500&display=swap');
+
+/* ── Variables ─────────────────────────────────────────────── */
+:root {
+  --bg:           #08090d;
+  --surface:      #0f111a;
+  --surface2:     #13151f;
+  --border:       rgba(255,255,255,0.07);
+  --border-focus: rgba(124,107,255,0.55);
+  --accent:       #4af0c4;
+  --accent2:      #7c6bff;
+  --text:         #e8eaf0;
+  --muted:        #6b7280;
+}
+
+/* ── Reset ─────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+/* ── Body ──────────────────────────────────────────────────── */
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 300;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  overflow: hidden;
+  background-image:
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+/* ── Orbs ──────────────────────────────────────────────────── */
+body::before, body::after {
+  content: '';
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+body::before {
+  width: 520px; height: 520px;
+  top: -160px; right: -100px;
+  background: radial-gradient(circle, rgba(124,107,255,0.10) 0%, transparent 70%);
+}
+body::after {
+  width: 440px; height: 440px;
+  bottom: -140px; left: -80px;
+  background: radial-gradient(circle, rgba(74,240,196,0.08) 0%, transparent 70%);
+  animation-delay: -9s;
+}
+@keyframes drift {
+  from { transform: translate(0,0) scale(1); }
+  to   { transform: translate(28px,22px) scale(1.07); }
+}
+
+/* ── Home Page Button ──────────────────────────────────────── */
+.btn-home {
+  position: fixed;
+  top: 1.2rem;
+  left: 1.2rem;
+  z-index: 100;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.45rem 1rem;
+  background: rgba(15, 17, 26, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 9999px;
+  color: #e8eaf0;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.btn-home:hover {
+  background: rgba(74, 240, 196, 0.1);
+  border-color: rgba(74, 240, 196, 0.45);
+  color: #4af0c4;
+}
+
+.btn-home svg {
+  width: 14px;
+  height: 14px;
+  flex-shrink: 0;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ── Card ──────────────────────────────────────────────────── */
+.card {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 400px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.8rem 2.5rem 2.5rem;
+  box-shadow: 0 0 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(255,255,255,0.03);
+  animation: fadeUp 0.7s ease both;
+}
+
+/* shimmer — purple leading this time to distinguish from login */
+.card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 10%; right: 10%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--accent2), var(--accent), transparent);
+  border-radius: 0 0 50% 50%;
+  opacity: 0.65;
+}
+
+/* ── Heading ───────────────────────────────────────────────── */
+h2 {
+  font-family: 'Syne', sans-serif;
+  font-weight: 800;
+  font-size: 2rem;
+  letter-spacing: -0.03em;
+  background: linear-gradient(135deg, #fff 25%, var(--accent2) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+/* ── Footer link ───────────────────────────────────────────── */
+.card > p:last-child,
+body > p {
+  margin-top: 1.6rem;
+  text-align: center;
+  font-size: 0.88rem;
+  color: var(--muted);
+}
+
+.card > p:last-child a,
+body > p a {
+  color: var(--accent);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.card > p:last-child a:hover,
+body > p a:hover {
+  color: #fff;
+}
+
+/* ── Form ──────────────────────────────────────────────────── */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* hide the <br> tags in the original HTML */
+br { display: none; }
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  outline: none;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus {
+  border-color: var(--border-focus);
+  background: rgba(124,107,255,0.04);
+  box-shadow: 0 0 0 3px rgba(124,107,255,0.09);
+}
+
+input::placeholder { color: rgba(107,114,128,0.6); }
+
+/* ── Submit button ─────────────────────────────────────────── */
+button[type="submit"] {
+  margin-top: 0.25rem;
+  width: 100%;
+  padding: 0.85rem;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  font-family: 'Syne', sans-serif;
+  font-weight: 700;
+  font-size: 0.95rem;
+  letter-spacing: 0.04em;
+  /* flipped gradient vs login to visually distinguish */
+  background: linear-gradient(135deg, var(--accent2) 0%, var(--accent) 100%);
+  color: #08090d;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+button[type="submit"]::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.18) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+
+button[type="submit"]:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 28px rgba(124,107,255,0.3);
+}
+button[type="submit"]:hover::after { opacity: 1; }
+button[type="submit"]:active { transform: translateY(0); }
+
+/* ── Animation ─────────────────────────────────────────────── */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ────────────────────────────────────────────── */
+@media (max-width: 460px) {
+  .card { padding: 2rem 1.5rem; border-radius: 16px; }
+  h2 { font-size: 1.7rem; }
+}
