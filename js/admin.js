@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!userData?.user) {
         alert("Please login first");
-        window.location.href = "login";
+        window.location.href = "login.html";
         return;
     }
 
@@ -26,7 +26,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
     if (!userRow?.is_admin) {
         alert("Access denied ❌");
-        window.location.href = "dashboard";
+        window.location.href = "dashboard.html";
         return;
     }
 

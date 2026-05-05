@@ -1,16 +1,14 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-  const form = document.querySelector("form");
-  if (!form) return;
-
   // ================= REGISTER =================
-  if (window.location.pathname.includes("register")) {
+  const registerForm = document.getElementById("registerForm");
 
-    form.addEventListener("submit", async (e) => {
+  if (registerForm) {
+    registerForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const email = form.querySelector('input[type="email"]').value;
-      const password = form.querySelector('input[type="password"]').value;
+      const email = registerForm.querySelector('input[type="email"]').value;
+      const password = registerForm.querySelector('input[type="password"]').value;
 
       if (!email || !password) {
         alert("Fill all fields");
@@ -18,7 +16,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        // 🔐 Create auth user (Trigger will insert into users table)
         const { data, error } = await db.auth.signUp({
           email,
           password
@@ -29,10 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
           return;
         }
 
-        // ❗ No manual insert here (trigger handles it)
-
         alert("Registered successfully! Please login.");
-        window.location.href = "login";
+        window.location.href = "login.html";
 
       } catch (err) {
         console.error(err);
@@ -42,13 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // ================= LOGIN =================
-  if (window.location.pathname.includes("login")) {
+  const loginForm = document.getElementById("loginForm");
 
-    form.addEventListener("submit", async (e) => {
+  if (loginForm) {
+    loginForm.addEventListener("submit", async (e) => {
       e.preventDefault();
 
-      const email = form.querySelector('input[type="email"]').value;
-      const password = form.querySelector('input[type="password"]').value;
+      console.log("Login form submitted ✅");
+
+      const email = loginForm.querySelector('input[type="email"]').value;
+      const password = loginForm.querySelector('input[type="password"]').value;
 
       if (!email || !password) {
         alert("Fill all fields");
@@ -56,7 +54,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
 
       try {
-        // 🔐 Login
         const { data, error } = await db.auth.signInWithPassword({
           email,
           password
@@ -68,10 +65,9 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         const user = data.user;
-
         console.log("Logged in:", user.id);
 
-        // 🔥 FETCH ROLE FROM users TABLE
+        // 🔥 Fetch role
         const { data: userRow, error: roleError } = await db
           .from("users")
           .select("is_admin")
@@ -80,15 +76,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
         if (roleError || !userRow) {
           console.error("User role error:", roleError);
-          alert("User record not found ❌ (Trigger issue)");
+          alert("User record not found ❌");
           return;
         }
 
-        // ✅ REDIRECT BASED ON ROLE
+        // ✅ Redirect
         if (userRow.is_admin) {
-          window.location.href = "admin";
+          window.location.href = "admin.html";
         } else {
-          window.location.href = "dashboard";
+          window.location.href = "dashboard.html";
         }
 
       } catch (err) {
