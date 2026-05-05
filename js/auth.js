@@ -1,10 +1,10 @@
-document.getElementById("loginForm").addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
   const form = document.querySelector("form");
   if (!form) return;
 
   // ================= REGISTER =================
-  if (window.location.pathname.includes("register.html")) {
+  if (window.location.pathname.includes("register")) {
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -32,7 +32,7 @@ document.getElementById("loginForm").addEventListener("DOMContentLoaded", () => 
         // ❗ No manual insert here (trigger handles it)
 
         alert("Registered successfully! Please login.");
-        window.location.href = "login.html";
+        window.location.href = "login";
 
       } catch (err) {
         console.error(err);
@@ -42,7 +42,7 @@ document.getElementById("loginForm").addEventListener("DOMContentLoaded", () => 
   }
 
   // ================= LOGIN =================
-  if (window.location.pathname.includes("login.html")) {
+  if (window.location.pathname.includes("login")) {
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -86,9 +86,9 @@ document.getElementById("loginForm").addEventListener("DOMContentLoaded", () => 
 
         // ✅ REDIRECT BASED ON ROLE
         if (userRow.is_admin) {
-          window.location.href = "admin.html";
+          window.location.href = "admin";
         } else {
-          window.location.href = "dashboard.html";
+          window.location.href = "dashboard";
         }
 
       } catch (err) {

@@ -1,7 +1,7 @@
 // 🔐 Logout function (GLOBAL - accessible from HTML)
 async function logout() {
     await db.auth.signOut();
-    window.location.href = "index.html";
+    window.location.href = "index";
 }
 
 // 🚀 Load Dashboard
@@ -13,7 +13,7 @@ async function loadDashboard() {
         const { data: userData, error } = await db.auth.getUser();
 
         if (error || !userData.user) {
-            window.location.href = "login.html";
+            window.location.href = "login";
             return;
         }
 
