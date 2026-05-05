@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.getElementById("loginForm").addEventListener("DOMContentLoaded", () => {
 
   const form = document.querySelector("form");
   if (!form) return;
